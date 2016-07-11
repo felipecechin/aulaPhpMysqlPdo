@@ -7,48 +7,40 @@
  */
 
 /**
- * Description of update
+ * Description of delete
  *
  * @author Alunos
  */
-class update extends conexao {
+class delete extends conexao {
 
     private $tabela;
-    private $dados;
     private $termos;
     private $places;
-    private $update;
+    private $delete;
     private $conexao;
     private $query;
 
-    public function doUpdate($tabela, array $dados, $termos = null, $condicao = null) {
+    public function doDelete($tabela, $termos, $dados) {
         $this->tabela = $tabela;
-        $this->dados = $dados;
         $this->termos = $termos;
-        parse_str($condicao, $this->places);
+        parse_str($dados, $this->places);
         $this->getSintaxe();
         $this->executar();
     }
 
     private function conectando() {
         $this->conexao = parent::getConexao();
-        $this->update = $this->conexao->prepare($this->query);
+        $this->delete = $this->conexao->prepare($this->query);
     }
 
     private function getSintaxe() {
-        foreach ($this->dados as $indice => $valores) {
-            $local[] = $indice . '=:' . $indice;
-        }
-        $local = implode(', ', $local);
-
-        $this->query = 'UPDATE ' . $this->tabela . ' SET ' . $local . ' ' . $this->termos;
+        $this->query = 'DELETE FROM ' . $this->tabela . ' ' . $this->termos;
     }
 
     private function executar() {
         $this->conectando();
         try {
-            var_dump(array_merge($this->dados, $this->places));
-            $this->update->execute(array_merge($this->dados, $this->places));
+            $this->delete->execute($this->places);
         } catch (PDOException $e) {
             echo 'Erro - ' . $e->getMessage();
         }

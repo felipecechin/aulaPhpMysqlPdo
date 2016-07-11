@@ -15,23 +15,21 @@ and open the template in the editor.
         require_once './Class/insert.class.php';
         require_once './Class/select.class.php';
         require_once './Class/update.class.php';
+        require_once './Class/delete.class.php';
 
 //        $dados = ['nome' => 'Leonardo', 'idade' => 37];
 //    
 //        $insere = new insert();
 //        $insere->doInsert('pessoa', $dados);
 //        var_dump($insere);
-
 //        $select = new select();
 //        //$select->doSelect('pessoa', 'WHERE nome like :nome AND idade>:idade', 'nome=j%&idade=10');
 //        $select->doSelectManual('SELECT nome from pessoa WHERE idade>:idade', 'idade=30');
 //        var_dump($select);
-        
-            $update = new update();
-            $dados = ['nome' => 'Lex','idade'=> 38];
-            
-
-
+//        $update = new update();
+//        $dados = ['nome' => 'Lex', 'idade' => 38];
+//        $update->doUpdate('pessoa', $dados, 'WHERE id = :id', 'id=3');
+//        var_dump($update);
         //CONSULTAS SQL SEM O USO DAS CLASSES ADICIONAIS
 //        
 //        $PDO = new conexao();
@@ -88,6 +86,10 @@ and open the template in the editor.
 //        } catch (PDOException $e) {
 //            echo 'Inserção não realizada' . $e->getMessage();
 //        } 
+
+        $delete = new delete();
+        $delete->doDelete('pessoa', 'WHERE id=:id', 'id=2');
+        var_dump($delete);
         ?>
     </body>
 </html>
