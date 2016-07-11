@@ -31,6 +31,11 @@ class select extends conexao {
         $this->executar();
     }
 
+    public function newDados($dados = null) {
+        parse_str($dados, $this->places);
+        $this->executar();
+    }
+
     private function conectando() {
         $this->conexao = parent::getConexao();
         $this->select = $this->conexao->prepare($this->query);

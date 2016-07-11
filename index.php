@@ -14,6 +14,7 @@ and open the template in the editor.
         require_once './Class/conexao.class.php';
         require_once './Class/insert.class.php';
         require_once './Class/select.class.php';
+        require_once './Class/update.class.php';
 
 //        $dados = ['nome' => 'Leonardo', 'idade' => 37];
 //    
@@ -21,11 +22,16 @@ and open the template in the editor.
 //        $insere->doInsert('pessoa', $dados);
 //        var_dump($insere);
 
-        $select = new select();
-        $select->doSelect('pessoa', 'WHERE nome like :nome AND idade>:idade', 'nome=j%&idade=10');
+//        $select = new select();
+//        //$select->doSelect('pessoa', 'WHERE nome like :nome AND idade>:idade', 'nome=j%&idade=10');
+//        $select->doSelectManual('SELECT nome from pessoa WHERE idade>:idade', 'idade=30');
+//        var_dump($select);
+        
+            $update = new update();
+            $dados = ['nome' => 'Lex','idade'=> 38];
+            
 
-        
-        
+
         //CONSULTAS SQL SEM O USO DAS CLASSES ADICIONAIS
 //        
 //        $PDO = new conexao();
